@@ -5,27 +5,28 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class StringUtils {
 
-    // 原始版本：简单的字符串连接
-    public static String concatenate(String str1, String str2) {
-        if (str1 == null) {
-            str1 = "";
+    // 修改版本：添加分隔符的字符串连接
+    public static String concatenate(String str1, String str2, String delimiter) {
+        if (delimiter == null) {
+            delimiter = "";
         }
-        if (str2 == null) {
-            str2 = "";
-        }
-        return str1 + str2;
+        return (str1 == null ? "null" : str1) + delimiter + (str2 == null ? "null" : str2);
     }
 
-    // 原始版本：计算字符串长度
-    public static int calculateLength(String str) {
+    // 修改版本：添加最大长度限制
+    public static int calculateLength(String str, int maxLength) {
         if (str == null) {
             return 0;
         }
-        return str.length();
+        int length = str.length();
+        return length > maxLength ? maxLength : length;
     }
 
-    // 原始版本：检查字符串是否为空
-    public static boolean isEmpty(String str) {
-        return str == null || str.trim().isEmpty();
+    // 修改版本：添加trim选项
+    public static boolean isEmpty(String str, boolean trim) {
+        if (str == null) {
+            return true;
+        }
+        return trim ? str.trim().isEmpty() : str.isEmpty();
     }
 }
